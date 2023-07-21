@@ -10,5 +10,27 @@ const searchPhone = () => {
     // console.log(url);
     fetch(url)
         .then(res => res.json())
-        .then(data => console.log(data.data));
+        .then(data => displaySearchResult(data.data));
+}
+
+
+const displaySearchResult = phones => {
+    // console.log(phones);
+    const searchResult = document.getElementById('search-result');
+    phones.forEach(phone => {
+        // console.log(phone);
+        const div = document.createElement('div');
+        div.classList.add('col');
+        div.innerHTML = `
+                <div class="card">
+                    <img src="${phone.image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${phone.brand}</h5>
+                        <p class="card-text">${phone.phone_name}</p>
+                    </div>
+                </div>
+        
+        `;
+        searchResult.appendChild(div);
+    });
 }
