@@ -49,6 +49,7 @@ const loadPhoneDetail = phoneID => {
 const displayPhoneDetail = phone => {
     // console.log(phone);
     const phoneDetail = document.getElementById('phone-detail');
+    phoneDetail.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
@@ -56,8 +57,8 @@ const displayPhoneDetail = phone => {
         <div class="card-body">
             <h5 class="card-title">${phone.name}</h5>
             <p class="card-text">
-                Brand: ${phone.brand} <br>
-                Release Date: ${phone.releaseDate} <br>
+                <b>Brand:</b> ${phone.brand} <br>
+                <b>Release Date:</b> ${phone.releaseDate} <br>
                 <b> Main Features: <br> </b>
                     Display Size: ${phone.mainFeatures.displaySize} <br>
                     Memory: ${phone.mainFeatures.memory} <br>
