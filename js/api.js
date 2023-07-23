@@ -3,20 +3,69 @@ const searchPhone = () => {
     const searchText = searchField.value;
     // console.log(searchText);
 
-    // Clear the input in the input field
+    /*------------------------------------------ 
+        Clear the input in the input field
+    ------------------------------------------*/
     searchField.value = '';
 
+    /*---------------------------------------------------- 
+        Spinner will show while the data is loading
+    ----------------------------------------------------*/
+    const spinner = document.getElementById('spinner');
+    spinner.classList.remove('d-none');
+    spinner.classList.add('d-flex');
+
+
+    if (searchText === '') {
+        const searchResult = document.getElementById('search-result');
+        searchResult.textContent = '';
+        const div = document.createElement('div');
+        // div.style.marginLeft = '500px';
+        div.style.textAlign = 'center';
+        div.classList.add('w-50', 'mx-auto');
+        div.innerHTML = `
+        <h2>Text field can't be empty</h2>
+        `;
+        searchResult.appendChild(div);
+        return;
+    }
+
+
+
+    /*------------------------------------------------
+        Load data after fetching dynamic URL
+    ------------------------------------------------*/
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     // console.log(url);
     fetch(url)
         .then(res => res.json())
-        .then(data => displaySearchResult(data.data));
+        .then(data => {
+            displaySearchResult(data.data);
+            spinner.classList.remove('d-flex')
+            spinner.classList.add('d-none')
+
+        })
+
 }
 
 
 const displaySearchResult = phones => {
     // console.log(phones);
     const searchResult = document.getElementById('search-result');
+    searchResult.textContent = '';
+
+    if (!phones.length) {
+        const div = document.createElement('div');
+        // div.style.marginLeft = '500px';
+        div.style.textAlign = 'center';
+        div.classList.add('w-50', 'mx-auto');
+        div.innerHTML = `
+        <h2>No result found</h1>
+        `;
+        searchResult.appendChild(div);
+        return;
+    }
+
     phones.forEach(phone => {
         // console.log(phone);
         const div = document.createElement('div');

@@ -33,10 +33,20 @@
             Phone search box 
         ------------------------->
         <div class="input-group mb-3 w-50 mx-auto">
-            <input id="search-field" type="text" class="form-control" placeholder="search the food that you want"
+            <input id="search-field" type="text" class="form-control" placeholder="search the phone you want"
                 aria-label="Recipient's username" aria-describedby="button-addon2">
             <button onclick="searchPhone()" class="btn btn-outline-secondary" type="button"
                 id="button-search">search</button>
+        </div>
+
+
+        <!------------------ 
+            Spinner 
+        ------------------->
+        <div id="spinner" class="d-none justify-content-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </div>
 
 
