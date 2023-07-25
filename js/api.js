@@ -19,6 +19,13 @@ const searchPhone = () => {
     if (searchText === '') {
         const searchResult = document.getElementById('search-result');
         searchResult.textContent = '';
+
+        /*---------------------------------------------------------------- 
+            clear previous selected item card before searching new phone 
+        -----------------------------------------------------------------*/
+        const phoneDetail = document.getElementById('phone-detail');
+        phoneDetail.textContent = '';
+
         const div = document.createElement('div');
         // div.style.marginLeft = '500px';
         div.style.textAlign = 'center';
@@ -32,9 +39,10 @@ const searchPhone = () => {
 
 
 
-    /*------------------------------------------------
-        Load data after fetching dynamic URL
-    ------------------------------------------------*/
+    /*---------------------------------------------------------
+        Load data after fetching dynamic URL 
+       & Spinner will stop loading after data is fetched
+    ---------------------------------------------------------*/
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     // console.log(url);
     fetch(url)
@@ -54,6 +62,15 @@ const displaySearchResult = phones => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
 
+    /*---------------------------------------------------------------- 
+        clear previous selected item card before searching new phone 
+    ----------------------------------------------------------------*/
+    const phoneDetail = document.getElementById('phone-detail');
+    phoneDetail.textContent = '';
+
+    /*--------------------------------------------------------------------- 
+        Show an error message after not finding the search result
+    ---------------------------------------------------------------------*/
     if (!phones.length) {
         const div = document.createElement('div');
         // div.style.marginLeft = '500px';
